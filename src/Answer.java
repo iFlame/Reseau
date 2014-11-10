@@ -2,20 +2,26 @@ import java.io.Serializable;
 import java.util.HashMap;
 public class Answer implements Serializable {
 
-	private int numService;
-	private HashMap<String,String[]> tab;
+	private int serviceNumber;
+	private HashMap<String,String[]> userInfo;
 	
 	public Answer(){
-		tab=new HashMap<String,String[]>();
+		userInfo=new HashMap<String,String[]>();
 		
 	}
 	public Answer(int i, HashMap<String,String[]> tab ){
-		this.tab=tab;
-		this.numService=i;
-		
+		this.userInfo=userInfo;
+		this.serviceNumber=i;		
 	}
 
     public String toString() {
         return "Answer";
     }
+	public int getServiceNumber(){
+		return serviceNumber;
+	}
+	public HashMap<String,String[]> getUserInfo(){
+		return userInfo;
+	}
+
 }

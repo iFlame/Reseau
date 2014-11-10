@@ -19,5 +19,13 @@ public class Request implements Serializable{
     public String toString(){
         return "requete recut";
     }
-
+	public int getServiceNumber(){
+		return serviceNumber;
+	}
+	public String getUserName(){
+		return userName;
+	}
+	public String getUserNickname(){
+		return userNickname;
+	}
 }

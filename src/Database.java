@@ -20,11 +20,25 @@ public class Database {
 					return false;
 				}
 			}
-			
 		}
 		return true;
 	}
-	
+	/**
+	 * Méthode pour récuperer le nom attribué à un surnom.
+	 * A TESTER
+	 * @param Nickname dont il faut trouver le nom
+	 * @return le nom associé
+	 */
+	public String nicknameName(String Nickname){
+		for (Entry<String, ArrayList<String>> entry: database.entrySet()){
+			for(String nick: entry.getValue()){
+				if(nick.compareTo(Nickname)==0){
+					return entry.getKey();
+				}
+			}
+		}
+		return "";
+	}
 	/**
 	 * Méthode pour tester si un nom est déjà utilisé ou non.
 	 * A TESTER
@@ -144,7 +158,7 @@ public class Database {
 		}
 		else if(!isNameUse(r.getUserName())){
 			HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
-			answer.put("Impossible de trouver le nom : "+ r.getUserName()+" dans la base de donnée. La suppression n’a pas été effectué.", null);
+			answer.put("Impossible de trouver le nom : "+ r.getUserName()+" dans la base de donnée. La suppression n’a pas été effectuée.", null);
 			return new Answer(12,answer);
 		}
 		else{
@@ -171,12 +185,12 @@ public class Database {
 		}
 		else if(!isNameUse(r.getUserName())){
 			HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
-			answer.put("Impossible de trouver le nom : "+ r.getUserName()+" dans la base de donnée. La suppression n’a pas été effectué.", null);
+			answer.put("Impossible de trouver le nom : "+ r.getUserName()+" dans la base de donnée. La suppression n’a pas été effectuée.", null);
 			return new Answer(12,answer);
 		}
 		else if(!isNicknameUse(r.getUserNickname())){
 			HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
-			answer.put("Impossible de trouver le surnom : "+ r.getUserNickname()+" dans la base de donnée. La suppression n’a pas été effectué.", null);
+			answer.put("Impossible de trouver le surnom : "+ r.getUserNickname()+" dans la base de donnée. La suppression n’a pas été effectuée.", null);
 			return new Answer(12,answer);
 		}
 		else{
@@ -185,13 +199,39 @@ public class Database {
 		}
 	}
 	public Answer printAll(Request r){
-			return new Answer(20,database);
+			return new Answer(21,database);
 	}
 	public Answer printName(Request r){
-		return new Answer(20,database);
+		if(r.getUserName().compareTo("")==0){
+			HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
+			answer.put("Nom invalide.", null);
+			return new Answer(10,answer);
+		}
+		else if(!isNameUse(r.getUserName())){
+			HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
+			answer.put("Impossible de trouver le nom : "+ r.getUserName()+" dans la base de donnée. L'impression n’a pas été effectué.", null);
+			return new Answer(11,answer);
+		}
+		HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
+		answer.put(r.getUserName(),database.get(r.getUserName()));
+		return new Answer(21,answer);
 	}
 	public Answer printNickname(Request r){
-		return new Answer(20,database);
+		if(r.getUserNickname().compareTo("")==0){
+			HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
+			answer.put("Surnom invalide.", null);
+			return new Answer(10,answer);
+		}
+		else if(isNicknameUse(r.getUserNickname())){
+			HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
+			answer.put("Impossible de trouver le surnom : "+ r.getUserNickname()+" dans la base de donnée. L'impression n’a pas été effectué.", null);
+			return new Answer(11,answer);
+		}
+		//TODO
+		HashMap<String,ArrayList<String>> answer=new HashMap<String,ArrayList<String>>();
+		String name=nicknameName(r.getUserNickname());
+		answer.put(name,database.get(name));
+		return new Answer(21,answer);
 	}
 
 }

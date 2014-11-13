@@ -1,5 +1,7 @@
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Cette classe permet le traitement des messages envoyé par le serveur après une l'envoie d'une Request par le client.
@@ -25,10 +27,17 @@ public class Protocole {
 
     /**
      * Methode privée vérifiant les messages envoyés par le serveur après une requète valide.
+     * Cette méthode recoit la hashMap, la transformer en collection puis on itère dessus pour afficher le tableau
      * @param answer
      */
     private void validAnswer(HashMap<String, String[]> answer) {
-        //TODO:
+        Iterator it = answer.values().iterator();
+            while(it.hasNext()) {
+                String[] message = (String[]) it.next();
+                for(int i = 0; i < message.length; i++) {
+                    System.out.println("Message du serveur : " + message[i]);
+                }
+            }
     }
 
     /**
@@ -36,7 +45,7 @@ public class Protocole {
      * @param message
      */
     private void errorAnswer(Collection<String[]> message) {
-        //TODO:
+        // TODO : Je pense y a moyen de tout mettre dans la meme méthode.
     }
 
 

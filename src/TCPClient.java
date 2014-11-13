@@ -40,14 +40,26 @@ public class TCPClient implements ClientInterface{
         return new Request(30, null,null);
     }
 
+
+    /*
+    * Probleme main + interface
+    public static void treatAnswer(Object objectReceived) {
+        Answer answer = (Answer) objectReceived;
+        Protocole protocole = new Protocole();
+        protocole.treat(answer);
+    }
+*/
     public static void main(String argv[]) throws Exception  {
 
 
+        /** Déroulement du main :
+         * - Demande nom client + port serveur
+         * - demande request puis suite
+         */
 
-
-        Socket clientSocket = new Socket("localhost", 6789);
+        Socket clientSocket = new Socket("localhost", 6789); // Devra être remplacer par createClient
         Protocole protocole = new Protocole();
-        Request request = new Request(10,"test", "test");
+        Request request = new Request(10,"test", "test"); // Devra être remplacé par la boenne request.
 
         ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
         outToServer.writeObject(request);

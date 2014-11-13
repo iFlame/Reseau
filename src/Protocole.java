@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,12 +31,12 @@ public class Protocole {
      * Cette méthode recoit la hashMap, la transformer en collection puis on itère dessus pour afficher le tableau
      * @param answer
      */
-    private void validAnswer(HashMap<String, String[]> answer) {
+    private void validAnswer(HashMap<String, ArrayList<String>> answer) {
         Iterator it = answer.values().iterator();
             while(it.hasNext()) {
-                String[] message = (String[]) it.next();
-                for(int i = 0; i < message.length; i++) {
-                    System.out.println("Message du serveur : " + message[i]);
+            	ArrayList<String> message = ( ArrayList<String>) it.next();
+                for(int i = 0; i < message.size(); i++) {
+                    System.out.println("Message du serveur : " + message.get(i));
                 }
             }
     }
@@ -44,7 +45,7 @@ public class Protocole {
      * Méthode prvée vérifiant kes messages envoyés par le serveur après une requète non valide.
      * @param message
      */
-    private void errorAnswer(Collection<String[]> message) {
+    private void errorAnswer(Collection< ArrayList<String>> message) {
         // TODO : Je pense y a moyen de tout mettre dans la meme méthode.
     }
 

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TCPServer {
@@ -15,8 +16,9 @@ public class TCPServer {
             ObjectOutputStream outFromClient = new ObjectOutputStream((connectionSocket.getOutputStream()));
 
             // Test pour check mon client :
-            String table[] = {"YO"};
-            HashMap<String, String[]> hashmap = new HashMap<String, String[]>();
+            ArrayList<String> table = new ArrayList<String>();
+            table.add("YO");
+            HashMap<String,  ArrayList<String>> hashmap = new HashMap<String,  ArrayList<String>>();
             hashmap.put("ClemTCon",table);
 
             Answer answer = new Answer(20,hashmap);

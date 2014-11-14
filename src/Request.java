@@ -3,7 +3,7 @@ import java.io.Serializable;
 /**
  * Created by Quentin on 10/11/14.
  */
-public class Request implements Serializable{
+public class Request implements Serializable {
 
     private int serviceNumber;
     private String userName;
@@ -16,16 +16,19 @@ public class Request implements Serializable{
         this.userNickname = userNickame;
     }
 
-    public String toString(){
+    public String toString() {
         return "requete recut";
     }
-	public int getServiceNumber(){
-		return serviceNumber;
-	}
-	public String getUserName(){
-		return userName;
-	}
-	public String getUserNickname(){
-		return userNickname;
-	}
+
+    public int getServiceNumber() {
+        return serviceNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
 }

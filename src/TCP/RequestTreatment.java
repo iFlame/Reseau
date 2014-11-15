@@ -1,3 +1,5 @@
+package TCP;
+
 public class RequestTreatment {
     Database database;
 

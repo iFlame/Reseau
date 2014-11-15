@@ -1,10 +1,13 @@
-/**
+package TCP; /**
  * Cette classe représente le client qui commmunique en TCP avec le serveur.
  * Ce client implémente l'interface ClientInterface obligatoire pour communiquer correctement.
  *
  * Created by Quentin Cornevin & Clement Audry.
  */
 
+import graphic.ClientWindows;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,14 +15,7 @@ import java.net.Socket;
 
 public class TCPClient implements ClientInterface {
 
-    /*
-    * Probleme main + interface
-    public static void treatAnswer(Object objectReceived) {
-        Answer answer = (Answer) objectReceived;
-        Protocole protocole = new Protocole();
-        protocole.treat(answer);
-    }
-*/
+
     public static void main(String argv[]) throws Exception {
 
 
@@ -27,8 +23,13 @@ public class TCPClient implements ClientInterface {
          * - Demande nom client + port serveur
          * - demande request puis suite
          */
+        boolean test = true;
 
         Socket clientSocket = new Socket("localhost", 6789); // Devra être remplacer par createClient
+
+        Client client = new Client(clientSocket);
+        ClientWindows clientWindows = new ClientWindows(client);
+
         Protocole protocole = new Protocole();
         Request request = new Request(10, "test", "test"); // Devra être remplacé par la boenne request.
 
@@ -37,7 +38,12 @@ public class TCPClient implements ClientInterface {
         ObjectInputStream inFromServer = new ObjectInputStream((clientSocket.getInputStream()));
         Answer answer = (Answer) inFromServer.readObject();
         protocole.treat(answer);
-
+ //       treatAnswer(inFromServer.readObject());
+        while(test = true) {
+            inFromServer = new ObjectInputStream((clientSocket.getInputStream()));
+            answer = (Answer) inFromServer.readObject();
+            protocole.treat(answer);
+        }
 
         clientSocket.close();
     }
@@ -50,7 +56,7 @@ public class TCPClient implements ClientInterface {
      * @param clientName
      * @param portNumber
      * @return
-     * @throws IOException
+     * @throws java.io.IOException
      */
     public Socket createClient(String clientName, int portNumber) throws IOException {
         return new Socket(clientName, portNumber);
@@ -76,5 +82,11 @@ public class TCPClient implements ClientInterface {
         return new Request(30, null, null);
     }
 
-
+/*
+    public static void treatAnswer(Object objectReceived) {
+        Answer answer = (Answer) objectReceived;
+        Protocole protocole = new Protocole();
+        protocole.treat(answer);
+    }
+*/
 }

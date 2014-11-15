@@ -1,3 +1,5 @@
+package TCP;
+
 import java.io.IOException;
 import java.net.Socket;
 
@@ -11,5 +13,7 @@ public interface ClientInterface {
     Request addNameNickname(String name, String nickname);
 
     Request printNameNickname();
+
+ //   void treatAnswer(Object objectReceived);
 
 }

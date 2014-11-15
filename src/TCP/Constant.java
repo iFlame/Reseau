@@ -1,3 +1,5 @@
+package TCP;
+
 /**
  * Cette interface contient les valeurs des constantes utilises dans tous le projet.
  * <p/>

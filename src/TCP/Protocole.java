@@ -36,7 +36,10 @@ public class Protocole {
      */
     private void validAnswer(HashMap<String, ArrayList<String>> answer) {
         Iterator it = answer.values().iterator();
+        //System.out.println(answer.size());
         while (it.hasNext()) {
+            System.out.println("caca");
+
             ArrayList<String> message = (ArrayList<String>) it.next();
             for (int i = 0; i < message.size(); i++) {
                 System.out.println("Message du serveur : " + message.get(i));

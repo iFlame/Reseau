@@ -1,16 +1,37 @@
 package graphic;
 
+import TCP.Client;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Quentin on 15/11/2014.
  */
-public class PrintCard extends JPanel {
+public class PrintCard extends JPanel implements ActionListener{
 
-    public PrintCard() {
+    private Client client;
+
+    public PrintCard(Client client) {
         super();
-        this.add(new JButton("Afficher tous"));
-        this.add(new JButton("Afficher un couple"));
-        this.add(new JTextField("Nom affiché.",20));
+        this.client = client;
+        JButton btn = new JButton("Afficher tous");
+        btn.addActionListener(this);
+        this.add(btn);
+
+        JButton btn2 = new JButton("Afficher un couple");
+        btn2.addActionListener(this);
+        this.add(btn2);
+        this.add(new JTextField("Nom affiché.", 20));
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getActionCommand().equals( "Afficher tous")) {
+            client.printNameNickname();
+        } else {
+            // TODO : Afficher un couple
+        }
     }
 }

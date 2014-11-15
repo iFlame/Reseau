@@ -8,12 +8,10 @@ import java.net.Socket;
  */
 public interface ClientInterface {
 
-    Socket createClient(String clientName, int portNumber) throws IOException;
 
-    Request addNameNickname(String name, String nickname);
+    void addNameNickname(String name, String nickname);
 
-    Request printNameNickname();
+    void printNameNickname();
 
- //   void treatAnswer(Object objectReceived);
 
 }

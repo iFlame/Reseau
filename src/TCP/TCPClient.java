@@ -13,8 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class TCPClient implements ClientInterface {
-
+public class TCPClient {
 
     public static void main(String argv[]) throws Exception {
 
@@ -38,55 +37,15 @@ public class TCPClient implements ClientInterface {
         ObjectInputStream inFromServer = new ObjectInputStream((clientSocket.getInputStream()));
         Answer answer = (Answer) inFromServer.readObject();
         protocole.treat(answer);
- //       treatAnswer(inFromServer.readObject());
+
         while(test = true) {
             inFromServer = new ObjectInputStream((clientSocket.getInputStream()));
             answer = (Answer) inFromServer.readObject();
             protocole.treat(answer);
+            System.out.println(answer.getTab().size());
         }
 
         clientSocket.close();
     }
 
-    /**
-     * Cette méthode permet la création d'une socket sur le port passer en paramètre, avec un nom passer en paramètre.
-     * Si un serveur répond pour ce numéro de port alors la connexion TCP est établie sinon la méthode renvoie une
-     * exception.
-     *
-     * @param clientName
-     * @param portNumber
-     * @return
-     * @throws java.io.IOException
-     */
-    public Socket createClient(String clientName, int portNumber) throws IOException {
-        return new Socket(clientName, portNumber);
-    }
-
-    /**
-     * Cette méthode permet l'ajout d'un nom avec un surnom non déjà présent dans la base de donnée.
-     *
-     * @param name
-     * @param nickname
-     * @return
-     */
-    public Request addNameNickname(String name, String nickname) {
-        return new Request(10, name, nickname);
-    }
-
-    /**
-     * Cette méthode permet de demander au serveur d'afficher les noms / surnoms.
-     *
-     * @return
-     */
-    public Request printNameNickname() {
-        return new Request(30, null, null);
-    }
-
-/*
-    public static void treatAnswer(Object objectReceived) {
-        Answer answer = (Answer) objectReceived;
-        Protocole protocole = new Protocole();
-        protocole.treat(answer);
-    }
-*/
 }

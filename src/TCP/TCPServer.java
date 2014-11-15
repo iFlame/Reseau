@@ -17,7 +17,6 @@ public class TCPServer {
             Socket connectionSocket = welcomeSocket.accept();
 
             while (true) {
-                RequestTreatment rt = new RequestTreatment();
                 ObjectInputStream inFromClient = new ObjectInputStream(connectionSocket.getInputStream());
                 Request request = (Request) inFromClient.readObject();
                 ObjectOutputStream outFromClient = new ObjectOutputStream((connectionSocket.getOutputStream()));
@@ -28,8 +27,11 @@ public class TCPServer {
                 HashMap<String, ArrayList<String>> hashmap = new HashMap<String, ArrayList<String>>();
                 hashmap.put("ClemTCon", table);
 
-                Answer answer = new Answer(20, hashmap);
+                //Answer answer = new Answer(20, hashmap);
 
+               RequestTreatment requestTreatment = new RequestTreatment();
+
+                Answer answer = requestTreatment.getInfo(request);
                 //Answer answer = new Answer();
                 outFromClient.writeObject(answer);
                 System.out.println("Received: " + request.toString());

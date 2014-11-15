@@ -1,5 +1,6 @@
 package TCP;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -11,31 +12,17 @@ public class TCPServer {
 
     public static void main(String argv[]) throws Exception {
 
-        ServerSocket welcomeSocket = new ServerSocket(6789);
+        ServerSocket welcomeSocket = null;
+        boolean listening = true;
 
-        while (true) {
-            Socket connectionSocket = welcomeSocket.accept();
-
-            while (true) {
-                ObjectInputStream inFromClient = new ObjectInputStream(connectionSocket.getInputStream());
-                Request request = (Request) inFromClient.readObject();
-                ObjectOutputStream outFromClient = new ObjectOutputStream((connectionSocket.getOutputStream()));
-
-                // Test pour check mon client :
-                ArrayList<String> table = new ArrayList<String>();
-                table.add("YO");
-                HashMap<String, ArrayList<String>> hashmap = new HashMap<String, ArrayList<String>>();
-                hashmap.put("ClemTCon", table);
-
-                //Answer answer = new Answer(20, hashmap);
-
-               RequestTreatment requestTreatment = new RequestTreatment();
-
-                Answer answer = requestTreatment.getInfo(request);
-                //Answer answer = new Answer();
-                outFromClient.writeObject(answer);
-                System.out.println("Received: " + request.toString());
-            }
+        try {
+            welcomeSocket = new ServerSocket(6789);
+        } catch (IOException e) {
+            System.out.println("Port 6789 non disponible.");
         }
+        while(listening) {
+            new MultiServerThread(welcomeSocket.accept()).run();
+        }
+        welcomeSocket.close();
     }
 }

@@ -28,15 +28,9 @@ public class TCPClient {
 
         Client client = new Client(clientSocket);
         ClientWindows clientWindows = new ClientWindows(client);
-
+        ObjectInputStream inFromServer;
+        Answer answer;
         Protocole protocole = new Protocole();
-        Request request = new Request(10, "test", "test"); // Devra être remplacé par la boenne request.
-
-        ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
-        outToServer.writeObject(request);
-        ObjectInputStream inFromServer = new ObjectInputStream((clientSocket.getInputStream()));
-        Answer answer = (Answer) inFromServer.readObject();
-        protocole.treat(answer);
 
         while(test = true) {
             inFromServer = new ObjectInputStream((clientSocket.getInputStream()));

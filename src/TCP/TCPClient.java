@@ -36,6 +36,8 @@ public class TCPClient {
             inFromServer = new ObjectInputStream((clientSocket.getInputStream()));
             answer = (Answer) inFromServer.readObject();
             protocole.treat(answer);
+            System.out.println(answer.getNumService());
+
             System.out.println(answer.getTab().size());
         }
 

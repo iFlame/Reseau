@@ -22,11 +22,11 @@ public class Database {
         for (Entry<String, ArrayList<String>> entry : database.entrySet()) {
             for (String nick : entry.getValue()) {
                 if (nick.compareTo(Nickname) == 0) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -55,6 +55,7 @@ public class Database {
      * @return si le nom est pr�sent ou non dans la database
      */
     public boolean isNameUse(String name) {
+    	
         return database.containsKey(name);
     }
 
@@ -65,6 +66,8 @@ public class Database {
      * @return la reponse � la requete
      */
     public Answer addName(Request r) {
+        System.out.println(r.getUserName()+database.get(r.getUserName()));
+
         if (r.getUserNickname().compareTo("") == 0) {
             HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Surnom invalide.", null);

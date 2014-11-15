@@ -11,10 +11,13 @@ import java.net.Socket;
 public class MultiServerThread extends Thread {
 
     private Socket serverSocket = null;
+    private RequestTreatment requestTreatment;
 
     public MultiServerThread(Socket socket) {
         super("MultiServerThread");
         this.serverSocket = socket;
+        requestTreatment = new RequestTreatment();
+
     }
 
     public void run() {
@@ -32,7 +35,6 @@ public class MultiServerThread extends Thread {
             System.out.println("Pendant le while");
 
                 ObjectOutputStream outFromClient = new ObjectOutputStream((serverSocket.getOutputStream()));
-                RequestTreatment requestTreatment = new RequestTreatment();
 
                 Answer answer = requestTreatment.getInfo(request);
                 //Answer answer = new Answer();

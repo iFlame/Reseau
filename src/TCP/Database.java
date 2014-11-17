@@ -67,28 +67,26 @@ public class Database {
      */
     public Answer addName(Request r) {
         System.out.println(r.getUserName()+database.get(r.getUserName()));
+        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
 
         if (r.getUserNickname().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Surnom invalide.", null);
             return new Answer(10, answer);
         } else if (r.getUserName().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Nom invalide.", null);
             return new Answer(10, answer);
         } else if (isNicknameUse(r.getUserNickname())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Ce surnom nï¿½est pas disponible car dï¿½jï¿½ utilisï¿½ :" + r.getUserNickname() + ".", null);
             return new Answer(11, answer);
         } else if (isNameUse(r.getUserName())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Ce nom nï¿½est pas disponible car dï¿½jï¿½ utilisï¿½ :" + r.getUserName() + ".", null);
             return new Answer(11, answer);
         } else {
             ArrayList<String> nickname = new ArrayList<String>();
             nickname.add(r.getUserNickname());
             database.put(r.getUserName(), nickname);
-            return new Answer(20, new HashMap<String, ArrayList<String>>());
+            answer.put("La requète c'est bien effectuée",null);
+            return new Answer(20, answer);
         }
     }
 
@@ -99,25 +97,23 @@ public class Database {
      * @return la reponse ï¿½ la requete
      */
     public Answer addNickname(Request r) {
+        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
         if (r.getUserNickname().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Surnom invalide.", null);
             return new Answer(10, answer);
         } else if (r.getUserName().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Nom invalide.", null);
             return new Answer(10, answer);
         } else if (isNicknameUse(r.getUserNickname())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Ce surnom nï¿½est pas disponible car dï¿½jï¿½ utilisï¿½ :" + r.getUserNickname() + ".", null);
             return new Answer(11, answer);
         } else if (!isNameUse(r.getUserName())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Impossible de trouver le nom : " + r.getUserName() + " dans la base de donnï¿½e. L'ajout nï¿½a pas ï¿½tï¿½ effectuï¿½.", null);
             return new Answer(12, answer);
         } else {
             database.get(r.getUserName()).add(r.getUserNickname());
-            return new Answer(20, new HashMap<String, ArrayList<String>>());
+            answer.put("La requète c'est bien effectuée",null);
+            return new Answer(20, answer);
         }
     }
 
@@ -128,26 +124,26 @@ public class Database {
      * @return la reponse ï¿½ la requete
      */
     public Answer addNickname2(Request r) {
+        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
         if (r.getUserNickname().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Surnom invalide.", null);
             return new Answer(10, answer);
         } else if (r.getUserName().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Nom invalide.", null);
             return new Answer(10, answer);
         } else if (isNicknameUse(r.getUserNickname())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Ce surnom nï¿½est pas disponible car dï¿½jï¿½ utilisï¿½ :" + r.getUserNickname() + ".", null);
             return new Answer(11, answer);
         } else if (!isNameUse(r.getUserName())) {
+            answer.put("La requète c'est bien effectuée",null);
             database.get(r.getUserName()).add(r.getUserNickname());
-            return new Answer(20, new HashMap<String, ArrayList<String>>());
+            return new Answer(20,answer);
         } else {
             ArrayList<String> nickname = new ArrayList<String>();
             nickname.add(r.getUserNickname());
             database.put(r.getUserName(), nickname);
-            return new Answer(20, new HashMap<String, ArrayList<String>>());
+            answer.put("La requète c'est bien effectuée",null);
+            return new Answer(20, answer);
         }
     }
 
@@ -158,17 +154,17 @@ public class Database {
      * @return la reponse ï¿½ la requete
      */
     public Answer removeName(Request r) {
+        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
         if (r.getUserName().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Nom invalide.", null);
             return new Answer(10, answer);
         } else if (!isNameUse(r.getUserName())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Impossible de trouver le nom : " + r.getUserName() + " dans la base de donnï¿½e. La suppression nï¿½a pas ï¿½tï¿½ effectuï¿½e.", null);
             return new Answer(12, answer);
         } else {
+            answer.put("La requète c'est bien effectuée",null);
             database.remove(r.getUserName());
-            return new Answer(20, new HashMap<String, ArrayList<String>>());
+            return new Answer(20, answer);
         }
     }
 
@@ -179,25 +175,23 @@ public class Database {
      * @return la reponse ï¿½ la requete
      */
     public Answer removeNickname(Request r) {
+    	HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();    	
         if (r.getUserNickname().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Surnom invalide.", null);
             return new Answer(10, answer);
         } else if (r.getUserName().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Nom invalide.", null);
             return new Answer(10, answer);
         } else if (!isNameUse(r.getUserName())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Impossible de trouver le nom : " + r.getUserName() + " dans la base de donnï¿½e. La suppression nï¿½a pas ï¿½tï¿½ effectuï¿½e.", null);
             return new Answer(12, answer);
         } else if (!isNicknameUse(r.getUserNickname())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Impossible de trouver le surnom : " + r.getUserNickname() + " dans la base de donnï¿½e. La suppression nï¿½a pas ï¿½tï¿½ effectuï¿½e.", null);
             return new Answer(12, answer);
         } else {
+            answer.put("La requète c'est bien effectuée",null);
             database.get(r.getUserName()).remove(r.getUserNickname());
-            return new Answer(20, new HashMap<String, ArrayList<String>>());
+            return new Answer(20, answer);
         }
     }
 
@@ -206,32 +200,27 @@ public class Database {
     }
 
     public Answer printName(Request r) {
+        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
         if (r.getUserName().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Nom invalide.", null);
             return new Answer(10, answer);
         } else if (!isNameUse(r.getUserName())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Impossible de trouver le nom : " + r.getUserName() + " dans la base de donnï¿½e. L'impression nï¿½a pas ï¿½tï¿½ effectuï¿½.", null);
             return new Answer(11, answer);
         }
-        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
         answer.put(r.getUserName(), database.get(r.getUserName()));
         return new Answer(21, answer);
     }
 
     public Answer printNickname(Request r) {
+        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
         if (r.getUserNickname().compareTo("") == 0) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Surnom invalide.", null);
             return new Answer(10, answer);
         } else if (isNicknameUse(r.getUserNickname())) {
-            HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
             answer.put("Impossible de trouver le surnom : " + r.getUserNickname() + " dans la base de donnï¿½e. L'impression nï¿½a pas ï¿½tï¿½ effectuï¿½.", null);
             return new Answer(11, answer);
         }
-        //TODO
-        HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
         String name = nicknameName(r.getUserNickname());
         answer.put(name, database.get(name));
         return new Answer(21, answer);

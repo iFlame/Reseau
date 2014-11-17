@@ -33,11 +33,11 @@ public class TCPClient {
         Protocole protocole = new Protocole();
 
         while(test = true) {
-            inFromServer = new ObjectInputStream((clientSocket.getInputStream()));
+            inFromServer = new ObjectInputStream(clientSocket.getInputStream());
             answer = (Answer) inFromServer.readObject();
             protocole.treat(answer);
             System.out.println(answer.getNumService());
-
+            
             System.out.println(answer.getTab().size());
         }
 

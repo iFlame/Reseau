@@ -15,6 +15,7 @@ public class ClientWindows implements ItemListener {
     JPanel cards; //a panel that uses CardLayout
     final static String BUTTONPANEL = "Requète : Afficher";
     final static String TEXTPANEL = "Requète : Ajouter";
+    private NameList nameList;
 
     public ClientWindows(Client client) {
         super();
@@ -47,7 +48,8 @@ public class ClientWindows implements ItemListener {
 
         pane.add(comboBoxPane, BorderLayout.PAGE_START);
         pane.add(cards, BorderLayout.CENTER);
-        pane.add(new NameList(), BorderLayout.AFTER_LINE_ENDS);
+        nameList = new NameList();
+        pane.add(nameList, BorderLayout.AFTER_LINE_ENDS);
         pane.add(new HistoricList(),BorderLayout.BEFORE_LINE_BEGINS);
 
     }
@@ -57,4 +59,7 @@ public class ClientWindows implements ItemListener {
         cl.show(cards, (String)evt.getItem());
     }
 
+    public NameList getNameList() {
+        return nameList;
+    }
 }

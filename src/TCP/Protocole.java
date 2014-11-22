@@ -1,9 +1,9 @@
 package TCP;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+
+import java.util.*;
 
 /**
  * Cette classe permet le traitement des messages envoyé par le serveur après une l'envoie d'une Request par le client.
@@ -11,7 +11,11 @@ import java.util.Iterator;
  * <p/>
  * Created by Quentin Cornevin & Clement Audry.
  */
-public class Protocole {
+public class Protocole extends java.util.Observable {
+
+    HashMap<String, ArrayList<String>> map;
+    private Observer observer;
+
 
     /**
      * Seul methode public de la classe qui permet de traiter les messages renvoyé par le serveur grace au paramètre
@@ -41,10 +45,16 @@ public class Protocole {
             System.out.println("caca");
 
             ArrayList<String> message = (ArrayList<String>) it.next();
-            for (int i = 0; i < message.size(); i++) {
-                System.out.println("Message du serveur : " + message.get(i));
+            if(message != null) {
+                for (int i = 0; i < message.size(); i++) {
+                    System.out.println("Message du serveur : " + message.get(i));
+                }
+            } else {
+                System.out.println(answer.toString()); // TODO : Rajouter dans la Hashmap le nom de la requete en deuxième paramètre.
             }
+
         }
+        setMap(answer);
     }
 
     /**
@@ -57,4 +67,13 @@ public class Protocole {
     }
 
 
+    public void setMap(HashMap<String, ArrayList<String>> map) {
+        System.out.println("dans le set map");
+        this.map = map;
+        observer.update(this,map);
+    }
+
+    public void ajouterObserver(Observer obs){
+        this.observer = obs;
+    }
 }

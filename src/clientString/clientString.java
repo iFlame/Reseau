@@ -12,13 +12,16 @@ public class clientString {
 		String sentence;
 		String modifiedSentence;
     	Socket clientSocket = new Socket("10.212.119.194", 8080);
-    	BufferedReader inFromUser = new BufferedReader( new InputStreamReader(System.in));
-    	DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-    	BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-    	sentence = inFromUser.readLine();
-    	outToServer.writeBytes(sentence + '\n');
-    	modifiedSentence = inFromServer.readLine();
-    	System.out.println("FROM SERVER: " + modifiedSentence);
+		boolean test;
+		while(test = true) {
+			BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			sentence = inFromUser.readLine();
+			outToServer.writeBytes(sentence + '\n');
+			modifiedSentence = inFromServer.readLine();
+			System.out.println("FROM SERVER: " + modifiedSentence);
+		}
     	clientSocket.close();
     }
 }

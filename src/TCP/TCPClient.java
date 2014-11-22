@@ -31,6 +31,7 @@ public class TCPClient {
         ObjectInputStream inFromServer;
         Answer answer;
         Protocole protocole = new Protocole();
+        protocole.ajouterObserver(clientWindows.getNameList());
 
         while(test = true) {
             inFromServer = new ObjectInputStream(clientSocket.getInputStream());

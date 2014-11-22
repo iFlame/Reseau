@@ -1,5 +1,6 @@
 package TCP;
 
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -7,7 +8,7 @@ import java.net.Socket;
 /**
  * Created by Quentin on 15/11/2014.
  */
-public class Client implements ClientInterface{
+public class Client implements ClientInterface {
 
     private Socket clientSotcket;
 
@@ -47,6 +48,4 @@ public class Client implements ClientInterface{
             e.printStackTrace();
         }
     }
-
-
 }

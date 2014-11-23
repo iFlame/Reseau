@@ -1,6 +1,7 @@
 package graphic;
 
-import TCP.Client;
+import Client.ObjectTCPClient;
+import Client.VirtualClient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,9 +12,9 @@ import java.awt.event.ActionListener;
  */
 public class PrintCard extends JPanel implements ActionListener{
 
-    private Client client;
+    private VirtualClient client;
 
-    public PrintCard(Client client) {
+    public PrintCard(VirtualClient client) {
         super();
         this.client = client;
         JButton btn = new JButton("Afficher tous");

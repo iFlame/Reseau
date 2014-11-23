@@ -32,7 +32,6 @@ public class MultiServerThread extends Thread {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            System.out.println("Pendant le while");
 
                 ObjectOutputStream outFromClient = new ObjectOutputStream((serverSocket.getOutputStream()));
 
@@ -43,8 +42,6 @@ public class MultiServerThread extends Thread {
             }
 
         } catch (IOException e) {
-            System.out.println("TEST2");
-
             e.printStackTrace();
         }
 

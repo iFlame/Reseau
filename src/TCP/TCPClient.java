@@ -5,12 +5,10 @@ package TCP; /**
  * Created by Quentin Cornevin & Clement Audry.
  */
 
+import Client.ObjectTCPClient;
 import graphic.ClientWindows;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class TCPClient {
@@ -26,7 +24,7 @@ public class TCPClient {
 
         Socket clientSocket = new Socket("localhost", 6789); // Devra être remplacer par createClient
 
-        Client client = new Client(clientSocket);
+        ObjectTCPClient client = new ObjectTCPClient(clientSocket);
         ClientWindows clientWindows = new ClientWindows(client);
         ObjectInputStream inFromServer;
         Answer answer;
@@ -37,9 +35,9 @@ public class TCPClient {
             inFromServer = new ObjectInputStream(clientSocket.getInputStream());
             answer = (Answer) inFromServer.readObject();
             protocole.treat(answer);
-            System.out.println(answer.getNumService());
+          //  System.out.println(answer.getNumService());
             
-            System.out.println(answer.getTab().size());
+          //  System.out.println(answer.getTab().size());
         }
 
         clientSocket.close();

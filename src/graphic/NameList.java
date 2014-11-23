@@ -1,7 +1,5 @@
 package graphic;
 
-import TCP.Client;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;

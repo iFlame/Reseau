@@ -1,6 +1,8 @@
 package graphic;
 
-import TCP.Client;
+import Client.ObjectTCPClient;
+import Client.VirtualClient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
@@ -11,13 +13,13 @@ import java.awt.event.ItemListener;
  */
 public class ClientWindows implements ItemListener {
 
-    private Client client;
+    private VirtualClient client;
     JPanel cards; //a panel that uses CardLayout
     final static String BUTTONPANEL = "Requète : Afficher";
     final static String TEXTPANEL = "Requète : Ajouter";
     private NameList nameList;
 
-    public ClientWindows(Client client) {
+    public ClientWindows(VirtualClient client) {
         super();
         this.client = client;
         JFrame frame = new JFrame("TCP Client");

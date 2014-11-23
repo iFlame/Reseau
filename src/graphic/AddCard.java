@@ -1,7 +1,7 @@
 package graphic;
 
-import TCP.Client;
-import TCP.TCPClient;
+import Client.ObjectTCPClient;
+import Client.VirtualClient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,9 +14,9 @@ public class AddCard extends JPanel implements ActionListener {
 
     private JTextField name;
     private JTextField nickname;
-    private Client client;
+    private VirtualClient client;
 
-    public AddCard(Client client) {
+    public AddCard(VirtualClient client) {
         super();
         this.client = client;
 
@@ -46,7 +46,7 @@ public class AddCard extends JPanel implements ActionListener {
         return nickname.getText();
     }
 
-    public void setClient(Client client) {
+    public void setClient(VirtualClient client) {
         this.client = client;
     }
 }

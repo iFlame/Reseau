@@ -23,12 +23,9 @@ public class Request implements Serializable {
         this.userNickname = userNickame;
     }
 
-    public String toString() {
-        return "requete recut";
-    }
 /**
- * Permet d'obtenir le numéro de service de la requete
- * @return le numéro de service
+ * Permet d'obtenir le numï¿½ro de service de la requete
+ * @return le numï¿½ro de service
  */
     public int getServiceNumber() {
         return serviceNumber;
@@ -47,4 +44,20 @@ public class Request implements Serializable {
     public String getUserNickname() {
         return userNickname;
     }
+
+    /**
+     * Cette methode redefinis le toString pour pouvoir passer de la sÃ©rialisation objet a la serialisation en String
+     * plus facilement.
+     * @return
+     */
+    public String toString() {
+        if(serviceNumber == 10) {
+            return "ajouterPersonne " + userName + userNickname;
+        } else if(serviceNumber == 31) {
+            return "afficher";
+        } else {
+            return "Requete non traitee.";
+        }
+    }
+
 }

@@ -1,27 +1,51 @@
 package clientString;
 
+import Client.StringTCPClient;
+import TCP.Answer;
+import TCP.Protocole;
+import graphic.ClientWindows;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class clientString {
     public static void main(String argv[]) throws Exception {
-		String sentence;
 		String modifiedSentence;
     	Socket clientSocket = new Socket("localhost", 6789);
+		StringTCPClient stringTCPClient = new StringTCPClient(clientSocket);
 		boolean test;
+		Answer answer;
+		Protocole protocole = new Protocole();
+		ClientWindows clientWindows = new ClientWindows(stringTCPClient);
+		protocole.ajouterObserver(clientWindows.getNameList());
+
+
 		while(test = true) {
-			System.out.println("Bienvenu dans le serivice de surnom : taper votre commande");
-			BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+			//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+
 			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			sentence = inFromUser.readLine();
-			outToServer.writeBytes(sentence + '\n');
+			//sentence = inFromUser.readLine();
+			//outToServer.writeBytes(sentence + '\n');
 			modifiedSentence = inFromServer.readLine();
 			System.out.println("FROM SERVER: " + modifiedSentence);
+
+			if(modifiedSentence.equals("fait")) {
+				HashMap<String, ArrayList<String>> succesMap = new HashMap<String, ArrayList<String>>();
+				succesMap.put("La requete s'est bien effectue", null);
+				Answer serverAnswer = new Answer(20,succesMap);
+				protocole.treat(serverAnswer);
+			}
+
+
+			// Impossible d'adapter l'affichage le serveur renvoie une liste de String sans aucun moyen de distinguer.
+
 		}
     	clientSocket.close();
     }

@@ -16,11 +16,11 @@ import java.util.HashMap;
 
 public class clientString {
     public static void main(String argv[]) throws Exception {
+    	StringTreatment stringTreatment=new StringTreatment();
 		String modifiedSentence;
     	Socket clientSocket = new Socket("localhost", 6789);
 		StringTCPClient stringTCPClient = new StringTCPClient(clientSocket);
 		boolean test;
-		Answer answer;
 		Protocole protocole = new Protocole();
 		ClientWindows clientWindows = new ClientWindows(stringTCPClient);
 		protocole.ajouterObserver(clientWindows.getNameList());
@@ -41,6 +41,9 @@ public class clientString {
 				succesMap.put("La requete s'est bien effectue", null);
 				Answer serverAnswer = new Answer(20,succesMap);
 				protocole.treat(serverAnswer);
+			}
+			else{
+				stringTreatment.traitmentAffichage(modifiedSentence);
 			}
 
 

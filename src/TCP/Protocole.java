@@ -1,7 +1,5 @@
 package TCP;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 
 import java.util.*;
 

@@ -15,10 +15,11 @@ public class StringTreatment {
 		StringTokenizer token=new StringTokenizer(affichage,".,");
 		StringTokenizer tonek;
 		String nom;
-		ArrayList<String> surnom=new ArrayList();
+		ArrayList<String> surnom;
         HashMap<String, ArrayList<String>> answer = new HashMap<String, ArrayList<String>>();
 
 		while(token.hasMoreTokens()){
+			surnom=new ArrayList();
 			tonek=new StringTokenizer(token.nextToken()," ");
 			nom=tonek.nextToken();
 			while(tonek.hasMoreTokens()){

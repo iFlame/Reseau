@@ -21,17 +21,20 @@ public class UDPServer {
         Request request;
         RequestTreatment requestTreatment = new RequestTreatment();
         DatagramSocket socket = new DatagramSocket(6789);
+        ByteArrayInputStream baos;
 
         while(true) {
             /**
              * Lecture de la request du client :
              */
             byte[] recvBuf = new byte[2048];
-
+            System.out.println("test");
             DatagramPacket receivePacket = new DatagramPacket(recvBuf, recvBuf.length);
             socket.receive(receivePacket);
+            InetAddress ipAdress = receivePacket.getAddress();
+            int port = receivePacket.getPort();
 
-            ByteArrayInputStream baos = new ByteArrayInputStream(recvBuf);
+            baos = new ByteArrayInputStream(recvBuf);
             ObjectInputStream inFromServer = new ObjectInputStream(baos);
             request = (Request) inFromServer.readObject();
             System.out.println("Received: " + request.toString());
@@ -52,7 +55,7 @@ public class UDPServer {
 
             byte[] Buf= baos2.toByteArray();
           //  System.out.println(receivePacket.getPort());
-            DatagramPacket sendPacket = new DatagramPacket(Buf,Buf.length,InetAddress.getByName("localhost"),6789); // TODO . Pas besoin de les mettre a la main normalement
+            DatagramPacket sendPacket = new DatagramPacket(Buf,Buf.length,ipAdress,port);
 
 
             socket.send(sendPacket);

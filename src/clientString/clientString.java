@@ -18,7 +18,7 @@ public class clientString {
     public static void main(String argv[]) throws Exception {
     	StringTreatment stringTreatment=new StringTreatment();
 		String modifiedSentence;
-    	Socket clientSocket = new Socket("localhost", 6789);
+    	Socket clientSocket = new Socket("10.212.105.214", 8080);
 		StringTCPClient stringTCPClient = new StringTCPClient(clientSocket);
 		boolean test;
 		Protocole protocole = new Protocole();
@@ -43,7 +43,8 @@ public class clientString {
 				protocole.treat(serverAnswer);
 			}
 			else{
-				stringTreatment.traitmentAffichage(modifiedSentence);
+				Answer serverAnswer = stringTreatment.traitmentAffichage(modifiedSentence);
+				protocole.treat(serverAnswer);
 			}
 
 

@@ -52,8 +52,8 @@ public class Request implements Serializable {
      */
     public String toString() {
         if(serviceNumber == 10) {
-            return "ajouterPersonne " + userName + userNickname;
-        } else if(serviceNumber == 31) {
+            return "ajouterPersonne " + userName + " " +  userNickname;
+        } else if(serviceNumber == 30) {
             return "afficher";
         } else {
             return "Requete non traitee.";

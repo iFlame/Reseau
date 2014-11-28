@@ -31,7 +31,6 @@ public class ClientWindows implements ItemListener {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
-
     }
 
     public void addComponentToPane(Container pane) {

@@ -28,7 +28,6 @@ public class UDPServer {
              * Lecture de la request du client :
              */
             byte[] recvBuf = new byte[2048];
-            System.out.println("test");
             DatagramPacket receivePacket = new DatagramPacket(recvBuf, recvBuf.length);
             socket.receive(receivePacket);
             InetAddress ipAdress = receivePacket.getAddress();
@@ -38,26 +37,19 @@ public class UDPServer {
             ObjectInputStream inFromServer = new ObjectInputStream(baos);
             request = (Request) inFromServer.readObject();
             System.out.println("Received: " + request.toString());
-
             Answer answer = requestTreatment.getInfo(request);
 
             /**
              * Envoie de la réponse au client :
              */
             ObjectOutputStream outToServer;
-
             ByteArrayOutputStream baos2 = new ByteArrayOutputStream(2048);
-
             outToServer = new ObjectOutputStream(baos2);
             outToServer.flush();
             outToServer.writeObject(answer);
             outToServer.flush();
-
             byte[] Buf= baos2.toByteArray();
-          //  System.out.println(receivePacket.getPort());
             DatagramPacket sendPacket = new DatagramPacket(Buf,Buf.length,ipAdress,port);
-
-
             socket.send(sendPacket);
         }
     }

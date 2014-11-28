@@ -20,13 +20,16 @@ public class Protocole extends java.util.Observable {
      *
      * @param answer
      */
-    public void treat(Answer answer) {
+    public boolean treat(Answer answer) {
         System.out.println("Answer Recu !");
-        if (answer.getNumService() >= Constant.VALID_ANSWER) {
+        if(answer.getNumService() == 50) {
+            return true;
+        } else if (answer.getNumService() >= Constant.VALID_ANSWER) {
             validAnswer(answer.getTab());
         } else if (answer.getNumService() >= Constant.ERROR_ANSWER) {
             errorAnswer(answer.getTab().values());
         }
+        return false;
     }
 
     /**

@@ -18,6 +18,13 @@ public abstract class VirtualClient {
         sendRequest(new Request(10, name, nickname));
     }
 
+    /**
+     * Cette méthode permet d'envoyer au serveur une deconnexion.
+     */
+    public void disconnect() {
+        sendRequest(new Request(50,null,null));
+    }
+
     public void printNameNickname() {
         sendRequest(new Request(30,null,null));
     }

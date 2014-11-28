@@ -20,20 +20,13 @@ public class StringTCPClient extends VirtualClient {
     public void sendRequest(Request request) {
         String sentence;
         try {
-
-            String test;
-
             DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
             sentence = request.toString();
             System.out.println(sentence);
-             outToServer.writeBytes(sentence + '\n');
-            System.out.println("test");
-
-
-
-
-
-
+            outToServer.writeBytes(sentence + '\n');
+            if(request.getServiceNumber() == 50) {
+                this.socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

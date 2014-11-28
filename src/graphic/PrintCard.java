@@ -25,14 +25,18 @@ public class PrintCard extends JPanel implements ActionListener{
         btn2.addActionListener(this);
         this.add(btn2);
         this.add(new JTextField("Nom affiché.", 20));
+
+        JButton dsiconnect = new JButton("Deconnexion");
+        dsiconnect.addActionListener(this);
+        this.add(dsiconnect);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals( "Afficher tous")) {
             client.printNameNickname();
-        } else {
-            // TODO : Afficher un couple
+        } else if(e.getActionCommand().equals("Deconnexion")) {
+            client.disconnect();
         }
     }
 }

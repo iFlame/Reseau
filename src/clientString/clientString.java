@@ -16,7 +16,8 @@ import java.util.HashMap;
 
 public class clientString {
     public static void main(String argv[]) throws Exception {
-    	StringTreatment stringTreatment=new StringTreatment();
+
+		StringTreatment stringTreatment=new StringTreatment();
 		String modifiedSentence;
     	Socket clientSocket = new Socket("10.212.105.214", 8080);
 		StringTCPClient stringTCPClient = new StringTCPClient(clientSocket);
@@ -25,17 +26,11 @@ public class clientString {
 		ClientWindows clientWindows = new ClientWindows(stringTCPClient);
 		protocole.ajouterObserver(clientWindows.getNameList());
 
-
 		while(test = true) {
-			//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-
 			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			//sentence = inFromUser.readLine();
-			//outToServer.writeBytes(sentence + '\n');
 			modifiedSentence = inFromServer.readLine();
 			System.out.println("FROM SERVER: " + modifiedSentence);
-
 			if(modifiedSentence.equals("fait")) {
 				HashMap<String, ArrayList<String>> succesMap = new HashMap<String, ArrayList<String>>();
 				succesMap.put("La requete s'est bien effectue", null);
@@ -46,10 +41,6 @@ public class clientString {
 				Answer serverAnswer = stringTreatment.traitmentAffichage(modifiedSentence);
 				protocole.treat(serverAnswer);
 			}
-
-
-			// Impossible d'adapter l'affichage le serveur renvoie une liste de String sans aucun moyen de distinguer.
-
 		}
     	clientSocket.close();
     }

@@ -17,11 +17,12 @@ public class TCPServer {
 
         try {
             welcomeSocket = new ServerSocket(6789);
+
         } catch (IOException e) {
             System.out.println("Port 6789 non disponible.");
         }
         while(listening) {
-            new MultiServerThread(welcomeSocket.accept()).run();
+            new MultiServerThread(welcomeSocket.accept()).start();
         }
         welcomeSocket.close();
     }

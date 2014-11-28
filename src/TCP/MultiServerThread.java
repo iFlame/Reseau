@@ -24,7 +24,6 @@ public class MultiServerThread extends Thread {
         ObjectInputStream inFromClient = null;
         Request request = null;
         try {
-            System.out.println("TEST");
             while(true) {
             inFromClient = new ObjectInputStream(serverSocket.getInputStream());
             try {
@@ -32,15 +31,11 @@ public class MultiServerThread extends Thread {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
                 ObjectOutputStream outFromClient = new ObjectOutputStream((serverSocket.getOutputStream()));
-
                 Answer answer = requestTreatment.getInfo(request);
-                //Answer answer = new Answer();
                 outFromClient.writeObject(answer);
                 System.out.println("Received: " + request.toString());
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

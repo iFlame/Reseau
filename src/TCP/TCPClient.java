@@ -34,10 +34,10 @@ public class TCPClient {
         while(test = true) {
             inFromServer = new ObjectInputStream(clientSocket.getInputStream());
             answer = (Answer) inFromServer.readObject();
-            protocole.treat(answer);
-          //  System.out.println(answer.getNumService());
-            
-          //  System.out.println(answer.getTab().size());
+            boolean listening = protocole.treat(answer);
+            if(listening) {
+                test = false;
+            }
         }
 
         clientSocket.close();

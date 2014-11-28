@@ -28,7 +28,9 @@ public class ObjectTCPClient extends VirtualClient {
         try {
             outToServer = new ObjectOutputStream(clientSotcket.getOutputStream());
             outToServer.writeObject(request);
-
+            if(request.getServiceNumber() == 50) {
+                this.clientSotcket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

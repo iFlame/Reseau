@@ -30,11 +30,19 @@ public class AddCard extends JPanel implements ActionListener {
         JButton add = new JButton("Ajouter");
         add.addActionListener(this);
         this.add(add);
+
+        JButton dsiconnect = new JButton("Deconnexion");
+        dsiconnect.addActionListener(this);
+        this.add(dsiconnect);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        client.addNameNickname(this.getName(),this.getNickname());
+        if(e.getActionCommand().equals("Ajouter")) {
+            client.addNameNickname(this.getName(), this.getNickname());
+        } else if (e.getActionCommand().equals("Deconnexion"))  {
+            client.disconnect();
+        }
     }
 
 

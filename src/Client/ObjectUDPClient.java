@@ -6,10 +6,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.*;
 
 /**
  * Created by Quentin on 23/11/2014.
@@ -17,40 +14,27 @@ import java.net.UnknownHostException;
 public class ObjectUDPClient extends VirtualClient {
 
     private DatagramSocket socket;
-
     public ObjectUDPClient(DatagramSocket socket) {
         this.socket = socket;
     }
 
-
     public void sendRequest(Request request) {
-        ObjectOutputStream outToServer = null;
+     ObjectOutputStream outToServer = null;
         try {
             InetAddress IPAddress = InetAddress.getByName("localhost");
-
-
             ByteArrayOutputStream baos = new ByteArrayOutputStream(2048);
-
-            //ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(byteStream));
-
             outToServer = new ObjectOutputStream(baos);
             outToServer.flush();
             outToServer.writeObject(request);
             outToServer.flush();
-
             byte[] Buf= baos.toByteArray();
             DatagramPacket sendPacket = new DatagramPacket(Buf,Buf.length, IPAddress, 6789);
-
             socket.send(sendPacket);
-
-
-
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

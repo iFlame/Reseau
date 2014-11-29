@@ -25,6 +25,9 @@ public class RequestTreatment {
             case 4:
                 getTypeChange(r);
                 return null;
+            case 5:
+                getTypeChange(r);
+                return new Answer(20, null);                
             default:
                 return null;
         }

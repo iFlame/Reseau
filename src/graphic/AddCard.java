@@ -1,7 +1,6 @@
 package graphic;
 
-import Client.ObjectTCPClient;
-import Client.VirtualClient;
+import marshalling.VirtualClient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

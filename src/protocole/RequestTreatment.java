@@ -1,4 +1,4 @@
-package TCP;
+package protocole;
 
 public class RequestTreatment {
     Database database;
@@ -27,7 +27,7 @@ public class RequestTreatment {
                 return null;
             case 5:
                 getTypeChange(r);
-                return new Answer(20, null);                
+                return new Answer(30, null);
             default:
                 return null;
         }

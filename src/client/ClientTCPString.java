@@ -1,20 +1,19 @@
-package clientString;
+package client;
 
-import Client.StringTCPClient;
-import TCP.Answer;
-import TCP.Protocole;
+import marshalling.StringTCPClient;
+import protocole.Answer;
+import protocole.Protocole;
 import graphic.ClientWindows;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class clientString {
+public class ClientTCPString {
     public static void main(String argv[]) throws Exception {
 
 		StringTreatment stringTreatment=new StringTreatment();

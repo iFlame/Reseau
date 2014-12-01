@@ -1,4 +1,4 @@
-package TCP;
+package protocole;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class Answer implements Serializable {
     private HashMap<String, ArrayList<String>> tab;
 
     /**
-     * Crée un objet par defaut
+     * Crï¿½e un objet par defaut
      *
      */
     public Answer() {
@@ -18,9 +18,9 @@ public class Answer implements Serializable {
 
     }
 /**
- * Crée un objet Answer
+ * Crï¿½e un objet Answer
  * @param i numero de service
- * @param tab Arraylist de la réponse
+ * @param tab Arraylist de la rï¿½ponse
  */
     public Answer(int i, HashMap<String, ArrayList<String>> tab) {
         this.tab = tab;
@@ -33,21 +33,21 @@ public class Answer implements Serializable {
         return "Answer";
     }
 /**
- * donne acces au numéro de service de l'answer
+ * donne acces au numï¿½ro de service de l'answer
  * @return numero de service
  */
     public int getNumService() {
         return numService;
     }
 /**
- * modifie le numéro de service
+ * modifie le numï¿½ro de service
  * @param numService
  */
     public void setNumService(int numService) {
         this.numService = numService;
     }
 /**
- * donne accès à la hashmap de answer
+ * donne accï¿½s ï¿½ la hashmap de answer
  * @return la hashmap
  */
     public HashMap<String, ArrayList<String>> getTab() {

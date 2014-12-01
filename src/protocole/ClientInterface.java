@@ -1,7 +1,4 @@
-package TCP;
-
-import java.io.IOException;
-import java.net.Socket;
+package protocole;
 
 /**
  * Created by Quentin on 13/11/14.

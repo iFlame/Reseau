@@ -1,4 +1,4 @@
-package TCP;
+package protocole;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,7 +85,7 @@ public class Database {
             ArrayList<String> nickname = new ArrayList<String>();
             nickname.add(r.getUserNickname());
             database.put(r.getUserName(), nickname);
-            answer.put("La requète c'est bien effectuée",null);
+            answer.put("La requï¿½te c'est bien effectuï¿½e",null);
             return new Answer(20, answer);
         }
     }
@@ -112,7 +112,7 @@ public class Database {
             return new Answer(12, answer);
         } else {
             database.get(r.getUserName()).add(r.getUserNickname());
-            answer.put("La requète c'est bien effectuée",null);
+            answer.put("La requï¿½te c'est bien effectuï¿½e",null);
             return new Answer(20, answer);
         }
     }
@@ -135,14 +135,14 @@ public class Database {
             answer.put("Ce surnom nï¿½est pas disponible car dï¿½jï¿½ utilisï¿½ :" + r.getUserNickname() + ".", null);
             return new Answer(11, answer);
         } else if (!isNameUse(r.getUserName())) {
-            answer.put("La requète c'est bien effectuée",null);
+            answer.put("La requï¿½te c'est bien effectuï¿½e",null);
             database.get(r.getUserName()).add(r.getUserNickname());
             return new Answer(20,answer);
         } else {
             ArrayList<String> nickname = new ArrayList<String>();
             nickname.add(r.getUserNickname());
             database.put(r.getUserName(), nickname);
-            answer.put("La requète c'est bien effectuée",null);
+            answer.put("La requï¿½te c'est bien effectuï¿½e",null);
             return new Answer(20, answer);
         }
     }
@@ -162,7 +162,7 @@ public class Database {
             answer.put("Impossible de trouver le nom : " + r.getUserName() + " dans la base de donnï¿½e. La suppression nï¿½a pas ï¿½tï¿½ effectuï¿½e.", null);
             return new Answer(12, answer);
         } else {
-            answer.put("La requète c'est bien effectuée",null);
+            answer.put("La requï¿½te c'est bien effectuï¿½e",null);
             database.remove(r.getUserName());
             return new Answer(20, answer);
         }
@@ -189,7 +189,7 @@ public class Database {
             answer.put("Impossible de trouver le surnom : " + r.getUserNickname() + " dans la base de donnï¿½e. La suppression nï¿½a pas ï¿½tï¿½ effectuï¿½e.", null);
             return new Answer(12, answer);
         } else {
-            answer.put("La requète c'est bien effectuée",null);
+            answer.put("La requï¿½te c'est bien effectuï¿½e",null);
             database.get(r.getUserName()).remove(r.getUserNickname());
             return new Answer(20, answer);
         }

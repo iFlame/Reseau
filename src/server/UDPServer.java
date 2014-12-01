@@ -1,8 +1,8 @@
-package UDP;
+package server;
 
-import TCP.Answer;
-import TCP.Request;
-import TCP.RequestTreatment;
+import protocole.Answer;
+import protocole.Request;
+import protocole.RequestTreatment;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

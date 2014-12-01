@@ -1,12 +1,14 @@
-package TCP; /**
- * Cette classe représente le client qui commmunique en TCP avec le serveur.
+package client; /**
+ * Cette classe représente le client qui commmunique en protocole avec le serveur.
  * Ce client implémente l'interface ClientInterface obligatoire pour communiquer correctement.
  *
  * Created by Quentin Cornevin & Clement Audry.
  */
 
-import Client.ObjectTCPClient;
+import marshalling.ObjectTCPClient;
 import graphic.ClientWindows;
+import protocole.Answer;
+import protocole.Protocole;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;

@@ -1,6 +1,6 @@
-package Client;
+package marshalling;
 
-import TCP.Request;
+import protocole.Request;
 
 /**
  * Created by Quentin on 23/11/2014.

@@ -1,18 +1,14 @@
-package UDP;
+package client;
 
-import Client.ObjectUDPClient;
-import TCP.Answer;
-import TCP.Protocole;
+import marshalling.ObjectUDPClient;
+import protocole.Answer;
+import protocole.Protocole;
 import graphic.ClientWindows;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.Socket;
 
 /**
  * Created by Quentin on 23/11/2014.

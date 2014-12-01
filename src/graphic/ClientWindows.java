@@ -1,7 +1,6 @@
 package graphic;
 
-import Client.ObjectTCPClient;
-import Client.VirtualClient;
+import marshalling.VirtualClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +21,7 @@ public class ClientWindows implements ItemListener {
     public ClientWindows(VirtualClient client) {
         super();
         this.client = client;
-        JFrame frame = new JFrame("TCP Client");
+        JFrame frame = new JFrame("Client");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.

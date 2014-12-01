@@ -1,4 +1,8 @@
-package TCP;
+package server;
+
+import protocole.Answer;
+import protocole.Request;
+import protocole.RequestTreatment;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

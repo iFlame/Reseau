@@ -1,10 +1,10 @@
-package clientString;
+package client;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-import TCP.Answer;
+import protocole.Answer;
 
 public class StringTreatment {
 	public StringTreatment(){

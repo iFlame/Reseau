@@ -1,8 +1,7 @@
-package Client;
+package marshalling;
 
-import TCP.Request;
+import protocole.Request;
 
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

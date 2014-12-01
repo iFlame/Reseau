@@ -1,6 +1,6 @@
-package Client;
+package marshalling;
 
-import TCP.Request;
+import protocole.Request;
 
 import java.io.*;
 import java.net.Socket;
